@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=League+Spartan:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;600;700&family=Roboto+Slab:wght@300;400;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.875rem;
+    --background: 0.07 0 0;
+    --foreground: 0.96 0 0;
+    --card: 0.1 0 0;
+    --card-foreground: 0.96 0 0;
+    --popover: 0.12 0 0;
+    --popover-foreground: 0.96 0 0;
+    --primary: 0.72 0.19 145;
+    --primary-foreground: 0.07 0 0;
+    --secondary: 0.16 0 0;
+    --secondary-foreground: 0.96 0 0;
+    --muted: 0.14 0 0;
+    --muted-foreground: 0.58 0 0;
+    --accent: 0.72 0.19 145;
+    --accent-foreground: 0.07 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 1 0 0 / 8%;
+    --input: 1 0 0 / 10%;
+    --ring: 0.72 0.19 145;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.1 0 0;
+    --sidebar-foreground: 0.96 0 0;
+    --sidebar-primary: 0.72 0.19 145;
+    --sidebar-primary-foreground: 0.07 0 0;
+    --sidebar-accent: 0.14 0 0;
+    --sidebar-accent-foreground: 0.96 0 0;
+    --sidebar-border: 1 0 0 / 8%;
+    --sidebar-ring: 0.72 0.19 145;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply text-foreground;
+    background: #000000;
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 40%,
+      var(--bg-glow, rgba(0, 255, 120, 0.13)),
+      transparent 60%
+    );
+    z-index: -2;
+    pointer-events: none;
+  }
+
+  body[data-theme="day"]::before {
+    display: none;
+  }
+
+  /* ── DAY THEME: comprehensive text/border/bg overrides ── */
+  body[data-theme="day"] {
+    background: #f5f0e8 !important;
+    color: #1a1a1a !important;
+  }
+
+  body[data-theme="day"] h1,
+  body[data-theme="day"] h2,
+  body[data-theme="day"] h3,
+  body[data-theme="day"] h4,
+  body[data-theme="day"] p,
+  body[data-theme="day"] span,
+  body[data-theme="day"] label,
+  body[data-theme="day"] li {
+    color: #1a1a1a;
+  }
+
+  /* Force dark text on Tailwind white text classes */
+  body[data-theme="day"] .text-white {
+    color: #1a1a1a !important;
+  }
+
+  body[data-theme="day"] .text-gray-400,
+  body[data-theme="day"] .text-gray-500,
+  body[data-theme="day"] .text-gray-600 {
+    color: #555555 !important;
+  }
+
+  /* Editor textarea and title input — must be dark on day theme */
+  body[data-theme="day"] textarea,
+  body[data-theme="day"] input[type="text"] {
+    color: #1a1a1a !important;
+    caret-color: #1a1a1a !important;
+  }
+
+  body[data-theme="day"] textarea::placeholder,
+  body[data-theme="day"] input[type="text"]::placeholder {
+    color: #888888 !important;
+  }
+
+  /* Cards, containers, rounded elements */
+  body[data-theme="day"] .rounded-xl,
+  body[data-theme="day"] .rounded-2xl {
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  /* Bottom nav */
+  body[data-theme="day"] [data-ocid="bottom_nav"] {
+    background: rgba(235, 228, 215, 0.97) !important;
+    border-top: 2px solid rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Global header */
+  body[data-theme="day"] [data-ocid="global_header.panel"] {
+    background: rgba(240, 235, 220, 0.95) !important;
+    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Hamburger drawer */
+  body[data-theme="day"] [data-ocid="hamburger.panel"] {
+    background: #ede8db !important;
+    border-right-color: rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Library / settings cards */
+  body[data-theme="day"] [data-ocid="library.page"] .rounded-2xl,
+  body[data-theme="day"] [data-ocid="settings.page"] .rounded-2xl {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+  }
+
+  /* Editor area */
+  body[data-theme="day"] [data-ocid="create.editor"] {
+    color: #1a1a1a !important;
+    background: rgba(255, 255, 255, 0.6) !important;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
